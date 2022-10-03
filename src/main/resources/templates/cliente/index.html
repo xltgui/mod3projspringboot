@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http:://www.ultraq.net.nz/thymeleaf/layout">
+    </html>
+
+<head th:include="layout :: head"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+
+        
+        <!-- <p>Clientes:
+        <span th:each="${ClienteController.listaDeClientes.length})}">
+        <span th:text="${ClienteController.listaDeClientes[index]}"></span>
+        </span>
+        </p>
+    -->
+        
+
+    <table class="table">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Sexo</th>
+        </tr>
+    </thead>
+
+    
+    <tbody>
+      <tr th:each="cliente : ${lista}">
+            <td th:text="${cliente.Id}"></td>
+            <td th:text="${cliente.nome}"></td>
+            <td th:text="${cliente.endereco}"></td>
+            <td th:text="${cliente.sexo}"></td>
+        </tr>
+    </tbody>
+    </table>
+    
+</main>
+<footer th:include="layout :: footer"></footer>
+</body>
+</html>
