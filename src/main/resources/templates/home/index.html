@@ -8,8 +8,22 @@
     <nav th:replace="layout :: menu"></nav>
     <main class="container">
 
-    <p th:text="${valor}" class="btn btn-danger"></p>
+    <table class="table">
+        <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
 
+        <tbody>
+            <tr>
+                <td><a href="http://localhost:8080/clientes" class="btn btn-info">Clientes</a></td>
+                <td><a href="http://localhost:8080/cidades" class="btn btn-dark">Cidades</a></td>
+                <td><a href="http://localhost:8080/produtos" class="btn btn-success">Produtos</a></td>
+            </tr>
+        </tbody>
+        
+    </table>
     
 </main>
 <footer th:include="layout :: footer"></footer>

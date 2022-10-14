@@ -13,4 +13,5 @@ public interface ClienteRepository
     extends JpaRepository<Cliente,Long>{
     /*select * from cliente where nome like '%zinho%' */
     List<Cliente> findByNomeIgnoreCaseContaining(@Param("nome") String nome);
+
 }

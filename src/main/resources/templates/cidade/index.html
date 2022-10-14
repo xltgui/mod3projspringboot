@@ -1,0 +1,62 @@
+    <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http:://www.ultraq.net.nz/thymeleaf/layout">
+    </html>
+
+<head th:include="layout :: head"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+
+    <a href="/cidades/novo" class="btn btn-primary">Novo</a>
+    <table class="table" id="tabcidades">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="umaCidade : ${listaDeCidades}">
+                <td th:text="${umaCidade.id}"></td>
+                <td th:text="${umaCidade.nome}"></td>
+                <td>
+                    <a th:href="@{'/cidades/alterar/' + ${umaCidade.id}}"
+                    class="btn btn-warning">Alterar</a>
+                    <button class="btn btn-danger js-delete" th:data-id="${umaCidade.id}">Excluir</button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="modal" tabindex="-1" id="modalcidades">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Excluir cidade</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Confirma a exclusão da cidade?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCidadeNao">Não</button>
+              <button type="button" class="btn btn-primary" id="btnCidadeSim">Sim</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+    
+</main>
+<footer th:include="layout :: footer"></footer>
+<script th:src="@{/scriptCidades.js}"></script>
+</body>
+</html>
+</body>
+</html>

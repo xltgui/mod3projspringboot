@@ -7,14 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cidade {
+public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(length = 1000, unique = true)
+    @Column(length = 1000, nullable = false)
     private String nome;
-
+    @Column(length = 3000)
+    private String descricao;
     
+    private float valor;
+
     public long getId() {
         return id;
     }
@@ -27,6 +30,17 @@ public class Cidade {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public float getValor() {
+        return valor;
+    }
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
     
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http:://www.ultraq.net.nz/thymeleaf/layout">
+    </html>
+
+<head th:include="layout :: head"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+    
+    <a href="/produtos/novo" class="btn btn-primary">Novo</a>
+    <table class="table" id="tabprodutos">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th>Valor</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="produto : ${listaDeProdutos}">
+            <td th:text="${produto.id}"></td>
+            <td th:text="${produto.nome}"></td>
+            <td th:text="${produto.descricao}"></td>
+            <td th:text="${produto.valor}"></td>
+            <td>
+                <a th:href="@{'/produtos/alterar/' + ${produto.id}}" class="btn btn-warning">Alterar</a>
+                <button class="btn btn-danger js-delete" th:data-id="${produto.id}">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    
+</main>
+
+<div class="modal" tabindex="-1" id="modalproduto">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Excluir produto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confirma a exclusão do produto?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnProdutoNao">Não</button>
+          <button type="button" class="btn btn-primary" id="btnProdutoSim">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<footer th:include="layout :: footer"></footer>
+<script th:src="@{/scriptProdutos.js}"></script>
+
+</body>
+</html>

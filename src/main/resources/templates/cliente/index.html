@@ -16,8 +16,8 @@
         </p>
     -->
         
-
-    <table class="table">
+    <a href="/clientes/novo" class="btn btn-primary">Novo</a>
+    <table class="table" id="tabclientes">
 
     <thead>
         <tr>
@@ -25,6 +25,7 @@
             <th>Nome</th>
             <th>Endereço</th>
             <th>Sexo</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -35,11 +36,35 @@
             <td th:text="${cliente.nome}"></td>
             <td th:text="${cliente.endereco}"></td>
             <td th:text="${cliente.sexo}"></td>
+            <td>
+                <a th:href="@{'/clientes/alterar/' + ${cliente.id}}" class="btn btn-warning">Alterar</a>
+                <button class="btn btn-danger js-delete" th:data-id="${cliente.id}">Excluir</button>
+            </td>
         </tr>
     </tbody>
     </table>
     
 </main>
+
+<div class="modal" tabindex="-1" id="modalcliente">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Excluir cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confirma a exclusão do cliente?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnClienteNao">Não</button>
+          <button type="button" class="btn btn-primary" id="btnClienteSim">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <footer th:include="layout :: footer"></footer>
+<script th:src="@{/scriptClientes.js}"></script>
 </body>
 </html>
