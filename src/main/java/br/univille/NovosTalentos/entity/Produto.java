@@ -1,10 +1,12 @@
 package br.univille.NovosTalentos.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto {
@@ -17,6 +19,10 @@ public class Produto {
     private String descricao;
     
     private float valor;
+
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    private Cidade cidadeOrigem;
+    
 
     public long getId() {
         return id;
@@ -41,6 +47,12 @@ public class Produto {
     }
     public void setValor(float valor) {
         this.valor = valor;
+    }
+    public Cidade getCidadeOrigem() {
+        return cidadeOrigem;
+    }
+    public void setCidadeOrigem(Cidade cidadeOrigem) {
+        this.cidadeOrigem = cidadeOrigem;
     }
     
 }

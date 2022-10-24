@@ -1,9 +1,14 @@
 package br.univille.NovosTalentos.controller;
 
 
+import java.util.HashMap;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import br.univille.NovosTalentos.entity.Cliente;
-
+import br.univille.NovosTalentos.service.CidadeService;
 import br.univille.NovosTalentos.service.ClienteService;
 
 @Controller
@@ -23,6 +28,9 @@ public class ClienteController {
     //esse codigo será removido - controlador nao deve chamar repositorio
     @Autowired
     private ClienteService service;
+
+    @Autowired
+    private CidadeService cidadeService;
 
     @GetMapping
     public ModelAndView index(){
@@ -36,22 +44,39 @@ public class ClienteController {
     public ModelAndView novo(){
         var cliente = new Cliente();
 
-        return new ModelAndView("cliente/form","cliente", cliente);
+        var listaCidades = cidadeService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("cliente", cliente);
+        dados.put("listaCidades", listaCidades);
+        return new ModelAndView("cliente/form", dados);
     }
 
     @PostMapping(params = "form")
-    public ModelAndView save(Cliente cliente){
+    public ModelAndView save(@Valid Cliente cliente,
+                            BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            var listaCidades = cidadeService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("cliente", cliente);
+        dados.put("listaDeCidades", listaCidades);
+        return new ModelAndView("cliente/form", dados);
+        }
 
         service.save(cliente);
 
         return new ModelAndView("redirect:/clientes");
     }
+    
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
         
         var umCliente = service.findById(id);
-        
-        return new ModelAndView("cliente/form","cliente",umCliente);
+        var listaCidades = cidadeService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("cliente", umCliente);
+        dados.put("listaCidades", listaCidades);
+        return new ModelAndView("cliente/form", dados);
 
     }
     @GetMapping("/delete/{id}")

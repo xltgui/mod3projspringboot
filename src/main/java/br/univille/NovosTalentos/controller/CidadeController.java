@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import br.univille.NovosTalentos.entity.Cidade;
-import br.univille.NovosTalentos.repository.CidadeRepository;
 import br.univille.NovosTalentos.service.CidadeService;
 
 @Controller

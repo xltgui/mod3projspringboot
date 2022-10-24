@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http:://www.ultraq.net.nz/thymeleaf/layout">
+
+</html>
+
+<head th:include="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+        <a href="/vendas/novo" class="btn btn-primary">Novo</a>
+        <table class="table" id="tabvendas">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Data</th>
+                    <th>Cliente Comprador</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="venda : ${listaVendas}">
+                    <td th:each="${venda.id}"></td>
+                    <td th:each="${venda.data}"></td>
+                    <td th:each="${venda.comprador?.nome"></td>
+                    <td>
+                        <a th:href="@{'/produtos/alterar/' + ${produto.id}}" class="btn btn-warning">Alterar</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${produto.id}">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer th:include="layout :: footer"></footer>
+</body>
+
+</html>

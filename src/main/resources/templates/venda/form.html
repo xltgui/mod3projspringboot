@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http:://www.ultraq.net.nz/thymeleaf/layout">
+
+</html>
+
+<head th:include="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+        <form th:action="@{/vendas/(form)" method="POST" th:object="${venda}">
+            <input type="hidden" th:fiel="*{id}">
+
+            <div class="form-group">
+                <label for="txt"></label>
+            </div>
+        </form>
+
+    </main>
+    <footer th:include="layout :: footer"></footer>
+</body>
+
+</html>
