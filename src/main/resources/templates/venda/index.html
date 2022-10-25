@@ -21,12 +21,12 @@
 
             <tbody>
                 <tr th:each="venda : ${listaVendas}">
-                    <td th:each="${venda.id}"></td>
-                    <td th:each="${venda.data}"></td>
-                    <td th:each="${venda.comprador?.nome"></td>
+                    <td th:text="${venda.id}"></td>
+                    <td th:text="${venda.data}"></td>
+                    <td th:text="${venda.comprador?.nome}"></td>
                     <td>
-                        <a th:href="@{'/produtos/alterar/' + ${produto.id}}" class="btn btn-warning">Alterar</a>
-                        <button class="btn btn-danger js-delete" th:data-id="${produto.id}">Excluir</button>
+                        <a th:href="@{'/vendas/alterar/' + ${venda.id}}" class="btn btn-warning">Alterar</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${venda.id}">Excluir</button>
                     </td>
                 </tr>
             </tbody>

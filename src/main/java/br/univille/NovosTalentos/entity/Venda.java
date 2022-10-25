@@ -8,22 +8,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Venda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data;
-    
     
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Cliente comprador;
     
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "venda_id")
     private List<ItemVenda> colItens;
 
     public long getId() {
