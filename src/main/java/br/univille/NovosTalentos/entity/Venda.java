@@ -1,5 +1,6 @@
 package br.univille.NovosTalentos.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,9 +31,9 @@ public class Venda {
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Cliente comprador;
     
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "venda_id")
-    private List<ItemVenda> colItens;
+    private List<ItemVenda> colItens = new ArrayList<>();
 
     public long getId() {
         return id;

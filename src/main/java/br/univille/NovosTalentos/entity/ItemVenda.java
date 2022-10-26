@@ -49,4 +49,8 @@ public class ItemVenda {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
+
+    public float getValorFinal(){
+        return this.getValorVenda() * this.getQuantidade();
+    }
 }
